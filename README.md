@@ -37,13 +37,15 @@
 
 ## 🔗Contents
 
-<!-- 1. [Datasets](#Datasets)
-2. [Models](#Models)
-3. [Training](#Training)
-4. [Testing](#Testing) -->
 1. [Results](#Results)
+1. [Acknowledgements](#Acknowledgements)
+<!-- 1. [Datasets](#Datasets)
+1. [Models](#Models)
+2. [Training](#Training)
+3. [Testing](#Testing) -->
+
 <!-- 6. [Citation](#Citation) -->
-7. [Acknowledgements](#Acknowledgements)
+
 
 ---
 
