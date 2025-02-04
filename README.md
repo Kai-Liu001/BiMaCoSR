@@ -4,10 +4,11 @@
 
 "BiMaCoSR: Binary One-Step Diffusion Model Leveraging Flexible Matrix Compression for Real Super-Resolution", arXiv, 2025
 
-[[arXiv]()] [supplementary material] [visual results] [pretrained models]
+[[arXiv](https://arxiv.org/abs/2502.00333)] [[supplementary material](https://github.com/Kai-Liu001/BiMaCoSR/releases/download/Supp/supplemental-material.pdf)] [visual results] [pretrained models]
 
 #### 🔥🔥🔥 News
 
+- **2025-02-04:** This arXiv version and supplementary material are released.
 - **2025-02-01:** This repo is released.
 
 ---
