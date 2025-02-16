@@ -95,6 +95,18 @@ We achieve state-of-the-art performance. Detailed results can be found in the pa
 </p>
 </details>
 
+## 📎Citation
+
+If you find the code helpful in your research or work, please cite it!
+
+```
+@article{liu2025bimacosr,
+    title={BiMaCoSR: Binary One-Step Diffusion Model Leveraging Flexible Matrix Compression for Real Super-Resolution},
+    author={Liu, Kai and Yang, Kaicheng and Chen, Zheng and Li, Zhiteng  and Li, Wenbo and Guo, Yong and Zhang, Yulun},
+    journal={arXiv preprint arXiv:2502.00333},
+    year={2025}
+}
+
 ## 💡Acknowledgements
 
 This code is built on [SinSR](https://github.com/wyf0912/SinSR).
