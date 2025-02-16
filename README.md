@@ -102,7 +102,7 @@ If you find the code helpful in your research or work, please cite it!
 ```
 @article{liu2025bimacosr,
     title={BiMaCoSR: Binary One-Step Diffusion Model Leveraging Flexible Matrix Compression for Real Super-Resolution},
-    author={Liu, Kai and Yang, Kaicheng and Chen, Zheng and Li, Zhiteng  and Li, Wenbo and Guo, Yong and Zhang, Yulun},
+    author={Liu, Kai and Yang, Kaicheng and Chen, Zheng and Li, Zhiteng  and Li, Wenbo and Guo, Yong and Kong, Linghe and Zhang, Yulun},
     journal={arXiv preprint arXiv:2502.00333},
     year={2025}
 }
