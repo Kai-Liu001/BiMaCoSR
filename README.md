@@ -106,6 +106,7 @@ If you find the code helpful in your research or work, please cite it!
     journal={arXiv preprint arXiv:2502.00333},
     year={2025}
 }
+```
 
 ## 💡Acknowledgements
 
