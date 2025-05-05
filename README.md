@@ -2,7 +2,7 @@
 
 [Kai Liu](https://kai-liu001.github.io/), [Kaicheng Yang](https://racoonykc.github.io/), [Zheng Chen](https://zhengchen1999.github.io/), [Zhiteng Li](https://zhitengli.github.io/),[Yong Guo](https://www.guoyongcs.com/), [Wenbo Li](https://fenglinglwb.github.io/), [Linghe Kong](https://www.cs.sjtu.edu.cn/~linghe.kong/), and [Yulun Zhang](http://yulunzhang.com/).
 
-"BiMaCoSR: Binary One-Step Diffusion Model Leveraging Flexible Matrix Compression for Real Super-Resolution", arXiv, 2025
+"BiMaCoSR: Binary One-Step Diffusion Model Leveraging Flexible Matrix Compression for Real Super-Resolution", ICML, 2025
 
 [[arXiv](https://arxiv.org/abs/2502.00333)] [[supplementary material](https://github.com/Kai-Liu001/BiMaCoSR/releases/download/Supp/supplemental-material.pdf)] [visual results] [pretrained models]
 
@@ -100,10 +100,10 @@ We achieve state-of-the-art performance. Detailed results can be found in the pa
 If you find the code helpful in your research or work, please cite it!
 
 ```
-@article{liu2025bimacosr,
+@inproceedings{liu2025bimacosr,
     title={BiMaCoSR: Binary One-Step Diffusion Model Leveraging Flexible Matrix Compression for Real Super-Resolution},
     author={Liu, Kai and Yang, Kaicheng and Chen, Zheng and Li, Zhiteng  and Li, Wenbo and Guo, Yong and Kong, Linghe and Zhang, Yulun},
-    journal={arXiv preprint arXiv:2502.00333},
+    booktitle={ICML},
     year={2025}
 }
 ```
