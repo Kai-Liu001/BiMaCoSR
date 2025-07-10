@@ -7,7 +7,7 @@
 [[arXiv](https://arxiv.org/abs/2502.00333)] [[supplementary material](https://github.com/Kai-Liu001/BiMaCoSR/releases/download/Supp/supplemental-material.pdf)] [visual results] [pretrained models]
 
 #### 🔥🔥🔥 News
-
+- **2025-07-10:** Basic pipeline & checkpoint released.
 - **2025-02-04:** This arXiv version and supplementary material are released.
 - **2025-02-01:** This repo is released.
 
@@ -30,9 +30,9 @@
 
 ## 🔖 TODO
 
-- [ ] Release datasets.
-- [ ] Release training and testing code.
-- [ ] Release pre-trained BiMaCoSR.
+- [√] Release datasets.
+- [√] Release training and testing code.
+- [√] Release pre-trained BiMaCoSR.
 - [ ] Provide WebUI.
 - [ ] Provide HuggingFace🤗 demo.
 
