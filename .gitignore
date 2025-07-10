@@ -169,3 +169,27 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+*.pyc
+testdata/*
+assets/*
+plots/*
+results/*
+logs/*
+weights/*
+struct/*
+*.jpg
+data/train/*
+data/test/*
+*.pdf
+.ipynb_checkpoints/*
+flagged/*
+restored_output/*
+!assets/*
+!testdata/RealSet65
+!testdata/RealSR
+!testdata/RealSet128
+test_model_bsds200crop/*
+wandb/*
+data/*
+figs/*
+data_unuse/*

@@ -38,33 +38,71 @@
 
 ## 🔗Contents
 
-1. [Results](#Results)
-1. [Acknowledgements](#Acknowledgements)
-<!-- 1. [Datasets](#Datasets)
-1. [Models](#Models)
-2. [Training](#Training)
-3. [Testing](#Testing) -->
-
-<!-- 6. [Citation](#Citation) -->
-
+1. [Environment](#Environment)
+2. [Testing](#Testing)
+3. [Training](#Training)
+4. [Results](#Results)
+5. [Acknowledgements](#Acknowledgements)
 
 ---
 
-<!-- ## 📦Datasets
+## 🌐 Environment
 
-The datasets will be provided soon.
+To set up the environment for this project, follow these steps:
 
-## Models
+1. **Clone the repository**:
+    ```sh
+    git clone https://github.com/Kai-Liu001/BiMaCoSR.git
+    cd BiMaCoSR
+    ```
 
-The pre-trained model will be provided soon.
+2. **Create a conda environment**:
+    ```sh
+    conda create -n BiMaCoSR python=3.10
+    conda activate BiMaCoSR
+    pip install -r requirements.txt
+    ```
 
-## Training
-
-The training code will be provided soon.
+By following these steps, you should be able to set up the environment and run the code successfully.
 
 ## Testing
 
-The testing code will be provided soon. -->
+To test the model, follow these steps:
+
+1. **Download VQ-VAE and pretrained weights**:
+   - Download [VQ-GAN weights](https://github.com/zsyOAOA/ResShift/releases/download/v2.0/autoencoder_vq_f4.pth),put it into BiMaCoSR/weights
+   - Download [pretrained model weights](https://drive.google.com/file/d/1vh2hhHmvrz-LE0uqPXBk7mE8XZ_8W-NN/view?usp=drive_link) and [config](https://drive.google.com/file/d/1LZfQG4bNb0IGoCTtPgk1YwO7FciPhHpp/view?usp=drive_link),put this pair into BiMaCoSR/weights and BiMaCoSR/configs, we use them by abs path later
+
+2. **Run the testing script**:
+   ```sh
+    CUDA_VISIBLE_DEVICES=0 python inference_quant.py --config your_config_path --ckpt your_ckeckpoint_path --in_path LR_dir --out_path result_dir
+## Training
+
+To train the model, follow these steps:
+1. **Download ResShift(teacher model weights) and SinSR(initial weights)**:
+   - [Download Res-Shift weights](https://github.com/zsyOAOA/ResShift/releases/download/v2.0/resshift_realsrx4_s15_v1.pth),put it into BiMaCoSR/weights
+   - [Download SinSR weights](https://example.com/pretrained-weights),put it into BiMaCoSR/weights
+2. **Download Dataset**
+   - [Download cropped imagenet for training](https://drive.google.com/file/d/1XxW5C7YcZByH3PAq-fk1XOTbfuSc2Ybn/view?usp=drive_link),put it into BiMaCoSR/data/train
+   - Download any valid dataset you like,put it into BiMaCoSR/data/test
+   ```sh
+    data/
+    ├── train/train/
+    │         ├── image1.png
+    │         ├── image2.png
+    │         └── ...
+    ├── val/
+    │   ├── LR/
+    │   │   ├── image1.png
+    │   │   ├── image2.png
+    │   │   └── ...
+    │   └── HR/
+    │       ├── image1.png
+    │       ├── image2.png
+    │       └── ...
+3. **Run the training script**:
+   ```sh
+   CUDA_VISIBLE_DEVICES=0 torchrun --standalone --nproc_per_node=1 --nnodes=1   main_distill.py --cfg_path your_config_path --save_dir logs/your_experiment_name
 
 ## 🔎Results
 
@@ -94,6 +132,22 @@ We achieve state-of-the-art performance. Detailed results can be found in the pa
   <img width="900" src="figs/visual3.png">
 </p>
 </details>
+
+
+# Evaluation
+
+To evaluate the performance of BiMaCoSR, follow these steps:
+
+1. **Run the evaluation script**:
+   ```sh
+   CUDA_VISIBLE_DEVICES=0 python metric.py --inp_imgs path/to/sr_dir  --gt_imgs path/to/gt_dir --log path/to/log_dir
+   ```
+4. **Pre-computed results**:
+   For reference, we provide our [pre-computed results](https://drive.google.com/file/d/1lWOBRB_vbK69wXr_XPWsjxhjGeCUBsD-/view?usp=drive_link) .
+
+The evaluation will generate detailed metrics comparing BiMaCoSR with other state-of-the-art methods as shown in our paper.
+
+---
 
 ## 💡Acknowledgements
 

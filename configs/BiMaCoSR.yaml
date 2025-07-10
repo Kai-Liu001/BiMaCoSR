@@ -1,0 +1,282 @@
+model_teacher:
+  target: models.quant_unet.UNetModelSwinQuant
+  ckpt_path: null
+  teacher_ckpt_path: weights/resshift_realsrx4_s15_v1.pth
+  params:
+    image_size: 64
+    in_channels: 6
+    model_channels: 160
+    out_channels: 3
+    cond_lq: true
+    attention_resolutions:
+    - 64
+    - 32
+    - 16
+    - 8
+    dropout: 0
+    channel_mult:
+    - 1
+    - 2
+    - 2
+    - 4
+    num_res_blocks:
+    - 2
+    - 2
+    - 2
+    - 2
+    conv_resample: true
+    dims: 2
+    use_fp16: false
+    num_head_channels: 32
+    use_scale_shift_norm: true
+    resblock_updown: false
+    swin_depth: 2
+    swin_embed_dim: 192
+    window_size: 8
+    mlp_ratio: 4
+model:
+  target: models.quant_unet.UNetModelSwinQuant
+  ckpt_path: null
+  teacher_ckpt_path: weights/resshift_realsrx4_s15_v1.pth
+  params:
+    image_size: 64
+    in_channels: 6
+    model_channels: 160
+    out_channels: 3
+    cond_lq: true
+    attention_resolutions:
+    - 64
+    - 32
+    - 16
+    - 8
+    dropout: 0
+    channel_mult:
+    - 1
+    - 2
+    - 2
+    - 4
+    num_res_blocks:
+    - 2
+    - 2
+    - 2
+    - 2
+    conv_resample: true
+    dims: 2
+    use_fp16: false
+    num_head_channels: 32
+    use_scale_shift_norm: true
+    resblock_updown: false
+    swin_depth: 2
+    swin_embed_dim: 192
+    window_size: 8
+    mlp_ratio: 4
+    binary_linear: true
+    conv_quant_modules: BinaryConv2d_ours_with_skip_and_lora #BinaryConv2d_HORQ
+    conv_quant_config: {'rank': 8,'if_LRMB': True,'if_SMB': True}
+    linear_quant_modules: BinaryLinear_ours_with_skip_and_lora #BinaryLinear_HORQ
+    linear_quant_config: { 'rank': 8,'if_LRMB': True,'if_SMB': True}
+    which_fp_conv:
+    - skip_keywords:
+      - input_blocks.0.0
+      - out.2
+      param_threshold: 0.2
+      use_for_fp: nn.Conv2d
+ #   - skip_keywords:
+  #    - input_blocks.1.0
+  #    - output_blocks.11.0
+  #    param_threshold: 10
+   #   use_for_fp: nn.Conv2d
+    which_fp_linear: []
+diffusion:
+  target: models.script_util.create_gaussian_diffusion
+  params:
+    sf: 4
+    schedule_name: exponential
+    schedule_kwargs:
+      power: 0.3
+    etas_end: 0.99
+    steps: 15
+    min_noise_level: 0.04
+    kappa: 2.0
+    weighted_mse: false
+    predict_type: xstart
+    timestep_respacing: null
+    scale_factor: 1.0
+    normalize_input: true
+    latent_flag: true
+autoencoder:
+  target: ldm.models.autoencoder.VQModelTorch
+  ckpt_path: weights/autoencoder_vq_f4.pth
+  use_fp16: true
+  params:
+    embed_dim: 3
+    n_embed: 8192
+    ddconfig:
+      double_z: false
+      z_channels: 3
+      resolution: 256
+      in_channels: 3
+      out_ch: 3
+      ch: 128
+      ch_mult:
+      - 1
+      - 2
+      - 4
+      num_res_blocks: 2
+      attn_resolutions: []
+      dropout: 0.0
+      padding_mode: zeros
+degradation:
+  sf: 4
+  resize_prob:
+  - 0.2
+  - 0.7
+  - 0.1
+  resize_range:
+  - 0.15
+  - 1.5
+  gaussian_noise_prob: 0.5
+  noise_range:
+  - 1
+  - 30
+  poisson_scale_range:
+  - 0.05
+  - 3.0
+  gray_noise_prob: 0.4
+  jpeg_range:
+  - 30
+  - 95
+  second_order_prob: 0.5
+  second_blur_prob: 0.8
+  resize_prob2:
+  - 0.3
+  - 0.4
+  - 0.3
+  resize_range2:
+  - 0.3
+  - 1.2
+  gaussian_noise_prob2: 0.5
+  noise_range2:
+  - 1
+  - 25
+  poisson_scale_range2:
+  - 0.05
+  - 2.5
+  gray_noise_prob2: 0.4
+  jpeg_range2:
+  - 30
+  - 95
+  gt_size: 256
+  resize_back: false
+  use_sharp: false
+data:
+  train:
+    type: realesrgan
+    params:
+      dir_paths: [data/train]
+      txt_file_path: []
+      im_exts:
+      - JPEG
+      io_backend:
+        type: disk
+      blur_kernel_size: 21
+      kernel_list:
+      - iso
+      - aniso
+      - generalized_iso
+      - generalized_aniso
+      - plateau_iso
+      - plateau_aniso
+      kernel_prob:
+      - 0.45
+      - 0.25
+      - 0.12
+      - 0.03
+      - 0.12
+      - 0.03
+      sinc_prob: 0.1
+      blur_sigma:
+      - 0.2
+      - 3.0
+      betag_range:
+      - 0.5
+      - 4.0
+      betap_range:
+      - 1
+      - 2.0
+      blur_kernel_size2: 15
+      kernel_list2:
+      - iso
+      - aniso
+      - generalized_iso
+      - generalized_aniso
+      - plateau_iso
+      - plateau_aniso
+      kernel_prob2:
+      - 0.45
+      - 0.25
+      - 0.12
+      - 0.03
+      - 0.12
+      - 0.03
+      sinc_prob2: 0.1
+      blur_sigma2:
+      - 0.2
+      - 1.5
+      betag_range2:
+      - 0.5
+      - 4.0
+      betap_range2:
+      - 1
+      - 2.0
+      final_sinc_prob: 0.8
+      gt_size: 256
+      crop_pad_size: 300
+      use_hflip: true
+      use_rot: false
+      rescale_gt: true
+  val:
+    type: folder
+    params:
+      dir_path: data/val/LR
+      dir_path_extra: data/val/HR
+      transform_type: default
+      transform_kwargs:
+        mean: 0.5
+        std: 0.5
+      im_exts: png
+      length: null
+      recursive: false
+train:
+  lr: 2.0e-05
+  batch:
+  - 8
+  - 8
+  use_fp16: false
+  microbatch: 8
+  seed: 123456
+  global_seeding: false
+  prefetch_factor: 4
+  num_workers: 16
+  ema_rate: 0.999
+  iterations: 200000
+  milestones:
+  - 2000
+  - 10000
+  weight_decay: 0
+  save_freq: 40000
+  val_freq: 50
+  log_freq:
+  - 10
+  - 50
+  - 10000
+  save_images: false
+  use_ema_val: false
+quantparameter:
+  inference:
+    if_quant: true
+    quant_before_load: true
+  train:
+    if_quant: true
+    quant_before_load: False
+    pretained_model: weights/SinSR_v1.pth
