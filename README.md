@@ -4,7 +4,7 @@
 
 "BiMaCoSR: Binary One-Step Diffusion Model Leveraging Flexible Matrix Compression for Real Super-Resolution", arXiv, 2025
 
-[[arXiv](https://arxiv.org/abs/2502.00333)] [[supplementary material](https://github.com/Kai-Liu001/BiMaCoSR/releases/download/Supp/supplemental-material.pdf)] [visual results] [pretrained models]
+[[arXiv](https://arxiv.org/abs/2502.00333)] [[supplementary material](https://github.com/Kai-Liu001/BiMaCoSR/releases/download/Supp/supplemental-material.pdf)] [visual results] [[pretrained models](https://drive.google.com/file/d/1vh2hhHmvrz-LE0uqPXBk7mE8XZ_8W-NN/view?usp=drive_link)]
 
 #### 🔥🔥🔥 News
 - **2025-07-10:** Basic pipeline & checkpoint released.
@@ -30,9 +30,9 @@
 
 ## 🔖 TODO
 
-- [√] Release datasets.
-- [√] Release training and testing code.
-- [√] Release pre-trained BiMaCoSR.
+- [x] Release datasets.
+- [x] Release training and testing code.
+- [x] Release pre-trained BiMaCoSR.
 - [ ] Provide WebUI.
 - [ ] Provide HuggingFace🤗 demo.
 
@@ -70,8 +70,8 @@ By following these steps, you should be able to set up the environment and run t
 To test the model, follow these steps:
 
 1. **Download VQ-VAE and pretrained weights**:
-   - Download [VQ-GAN weights](https://github.com/zsyOAOA/ResShift/releases/download/v2.0/autoencoder_vq_f4.pth),put it into BiMaCoSR/weights
-   - Download [pretrained model weights](https://drive.google.com/file/d/1vh2hhHmvrz-LE0uqPXBk7mE8XZ_8W-NN/view?usp=drive_link) and [config](https://drive.google.com/file/d/1LZfQG4bNb0IGoCTtPgk1YwO7FciPhHpp/view?usp=drive_link),put this pair into BiMaCoSR/weights and BiMaCoSR/configs, we use them by abs path later
+   - Download [VQ-GAN weights](https://github.com/zsyOAOA/ResShift/releases/download/v2.0/autoencoder_vq_f4.pth), put it into BiMaCoSR/weights
+   - Download [pretrained model weights](https://drive.google.com/file/d/1vh2hhHmvrz-LE0uqPXBk7mE8XZ_8W-NN/view?usp=drive_link) and [config](https://drive.google.com/file/d/1LZfQG4bNb0IGoCTtPgk1YwO7FciPhHpp/view?usp=drive_link), put this pair into BiMaCoSR/weights and BiMaCoSR/configs, we use them by abs path later.
 
 2. **Run the testing script**:
    ```sh
@@ -80,11 +80,11 @@ To test the model, follow these steps:
 
 To train the model, follow these steps:
 1. **Download ResShift(teacher model weights) and SinSR(initial weights)**:
-   - [Download Res-Shift weights](https://github.com/zsyOAOA/ResShift/releases/download/v2.0/resshift_realsrx4_s15_v1.pth),put it into BiMaCoSR/weights
-   - [Download SinSR weights](https://example.com/pretrained-weights),put it into BiMaCoSR/weights
+   - [Download Res-Shift weights](https://github.com/zsyOAOA/ResShift/releases/download/v2.0/resshift_realsrx4_s15_v1.pth), put it into ``BiMaCoSR/weights``
+   - [Download SinSR weights](https://example.com/pretrained-weights),put it into ``BiMaCoSR/weights``
 2. **Download Dataset**
-   - [Download cropped imagenet for training](https://drive.google.com/file/d/1XxW5C7YcZByH3PAq-fk1XOTbfuSc2Ybn/view?usp=drive_link),put it into BiMaCoSR/data/train
-   - Download any valid dataset you like,put it into BiMaCoSR/data/test
+   - [Download cropped imagenet for training](https://drive.google.com/file/d/1XxW5C7YcZByH3PAq-fk1XOTbfuSc2Ybn/view?usp=drive_link), put it into BiMaCoSR/data/train
+   - Download any valid dataset you like, put it into ``BiMaCoSR/data/test``
    ```sh
     data/
     ├── train/train/
